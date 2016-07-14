@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="io.display.sdkapp.MainActivity"
+    android:background="@drawable/appbg"
+    android:textAlignment="center"
+    android:touchscreenBlocksFocus="true"
+    android:id="@+id/layout">
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:max="100"
+        android:progress="0"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></TableLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="App"
+        android:id="@+id/appTag"
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Geo"
+        android:id="@+id/geoTag"
+        android:textSize="20dp"
+        android:gravity="left|top"
+
+
+        android:layout_alignTop="@+id/geo"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refresh placements"
+        android:id="@+id/refreshPlacements"
+        android:clickable="false"
+        android:onClick="getAppPlacements"
+        android:layout_gravity="center|bottom"
+        android:layout_toLeftOf="@+id/appId"
+        android:layout_toStartOf="@+id/appId"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="30dp" />
+
+    <Spinner
+        android:layout_width="172dp"
+        android:layout_height="44dp"
+        android:id="@+id/placements"
+        android:spinnerMode="dropdown"
+        android:nestedScrollingEnabled="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:visibility="visible"
+        android:dropDownSelector="#8b4a4a"
+        android:dropDownWidth="fill_parent"
+        android:textAlignment="gravity"
+        android:transitionGroup="false"
+        android:background="@android:drawable/btn_dropdown"
+        style="@style/Base.Widget.AppCompat.DropDownItem.Spinner"
+        android:gravity="top|right"
+        android:layout_below="@+id/appTag"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="36dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Load Ad"
+        android:id="@+id/loadPlacement"
+        android:onClick="showAd"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignLeft="@+id/refreshPlacements"
+        android:layout_below="@+id/refreshPlacements" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:ems="10"
+        android:id="@+id/appId"
+        android:text="12"
+        android:textAlignment="center"
+        android:maxLength="110"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:enabled="true"
+        android:textSize="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="#d6d6d6"
+        android:layout_gravity="center_horizontal|top" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Placement"
+        android:id="@+id/placementTag"
+        android:textSize="20dp"
+        android:layout_gravity="left|top"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/placements" />
+
+    <Spinner
+        style="@style/Base.Widget.AppCompat.DropDownItem.Spinner"
+        android:layout_width="172dp"
+        android:layout_height="44dp"
+        android:id="@+id/geo"
+        android:spinnerMode="dropdown"
+        android:nestedScrollingEnabled="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:visibility="visible"
+        android:dropDownSelector="#8b4a4a"
+        android:dropDownWidth="fill_parent"
+        android:textAlignment="gravity"
+        android:transitionGroup="false"
+        android:background="@android:drawable/btn_dropdown"
+        android:gravity="top|right"
+        android:entries="@array/geos"
+        android:layout_below="@+id/placements"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="50dp" />
+    <Spinner
+        style="@style/Base.Widget.AppCompat.DropDownItem.Spinner"
+        android:layout_width="172dp"
+        android:layout_height="44dp"
+        android:id="@+id/env"
+        android:spinnerMode="dropdown"
+        android:nestedScrollingEnabled="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:visibility="visible"
+        android:dropDownSelector="#8b4a4a"
+        android:dropDownWidth="fill_parent"
+        android:textAlignment="gravity"
+        android:transitionGroup="false"
+        android:background="@android:drawable/btn_dropdown"
+        android:gravity="top|right"
+        android:entries="@array/envs"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/appId"
+        android:layout_alignEnd="@+id/appId" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rotate"
+        android:id="@+id/button"
+        android:onClick="switchOrientation"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_alignLeft="@+id/loadPlacement"
+        android:layout_below="@+id/loadPlacement"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentLeft="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Debug"
+        android:id="@+id/debug"
+        android:onClick="showDebug"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_toRightOf="@+id/loadPlacement"
+        android:layout_below="@+id/refreshPlacements" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Env"
+        android:id="@+id/textView"
+        android:textSize="20dp"
+        android:layout_gravity="right|bottom"
+        android:layout_alignTop="@+id/env"
+        android:layout_alignRight="@+id/appTag" />
+
+</RelativeLayout>

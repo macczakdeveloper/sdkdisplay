@@ -1,0 +1,78 @@
+apply plugin: 'com.android.library'
+def getVersion() {
+    return '0.9.9'
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 23
+        versionCode 1
+        versionName getVersion()
+    }
+
+    lintOptions
+            {
+             abortOnError false
+            }
+    buildTypes {
+        debug {
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+    }
+    sourceSets {
+        main {
+            java {
+                srcDir 'src/java'
+            }
+            resources {
+                srcDir 'src/resources'
+            }
+        }
+    }
+    publishNonDefault true
+
+}
+
+
+task makeJar(type: Copy) {
+    from("build/intermediates/bundles/release/")
+    into('build/')
+    include('classes.jar')
+    rename ('classes.jar', "io.display.sdk-${getVersion()}.jar")
+
+    from("build/outputs/aar/")
+    into('build/')
+    include('sdk-release.aar')
+    rename ('sdk-release.aar', "io.display.sdk-${getVersion()}.aar")
+}
+
+task makeDebugJar(type: Copy) {
+    from("build/intermediates/bundles/debug/")
+    into('build/')
+    include('classes.jar')
+    rename ('classes.jar', "io.display.sdk-debug-${getVersion()}.jar")
+
+    from("build/outputs/aar/")
+    into('build/')
+    include('sdk-debug.aar')
+    rename ('sdk-debug.aar', "io.display.sdk-${getVersion()}.aar")
+}
+task clearJar(type: Delete) {
+
+}
+
+makeJar.dependsOn(clearJar, build)
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+}

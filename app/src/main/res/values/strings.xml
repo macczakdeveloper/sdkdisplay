@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">display.io sdk emulator</string>
+    <string-array name="geos">
+        <item>IL</item>
+        <item>US</item>
+        <item>GB</item>
+        <item>IN</item>
+    </string-array>
+    <string-array name="envs">
+        <item>PROD</item>
+        <item>DEV</item>
+    </string-array>
+
+</resources>
